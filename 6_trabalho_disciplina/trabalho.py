@@ -35,7 +35,7 @@ def calcular_mediana(lista_glicemias, atributo):
         mediana = getattr(mediana_obj, atributo, None)
     else:
         mediana_obj_1 = lista_glicemias_ordenada[int(tamanho_lista_glicemias/2)]
-        mediana_obj_2 = lista_glicemias_ordenada[int(tamanho_lista_glicemias/2) + 1]
+        mediana_obj_2 = lista_glicemias_ordenada[int(tamanho_lista_glicemias/2) - 1]
         mediana = (getattr(mediana_obj_1, atributo, None) + getattr(mediana_obj_2, atributo, None)) / 2
 
     return mediana
@@ -69,7 +69,7 @@ with open(nome_arquivo,"r",encoding="utf8") as leitor:
     # 1) leia linha por linha do arquivo
     for linha in leitor:
     # 2) extraia as colunas das linhas separadas por ;
-        vetor_linha = linha.split(";")
+        vetor_linha = linha.replace('\n','').split(";")
         #[Quinta,2012,ac,90,6,2037,246,4]
         # print(f">>> {i}")
         # i += 1
@@ -100,5 +100,3 @@ with open(nome_arquivo,"r",encoding="utf8") as leitor:
     qtd, moda = calcular_moda(lista_glicemias, 'carb')
     print(f"Moda Carboidrato, o valor {moda} apareceu {qtd} vezes.")
     
-
-
